@@ -10,8 +10,8 @@ const App = () => {
     return (
         <S.AppContainer>
             <Switch>
-                <Route exact path="/" render={() => <Login />}></Route>
-                <Route exact path="/todos" render={() => <TodoList />}></Route>
+                <Route exact path="/login" render={() => <Login />}></Route>
+                <Route exact path="/list" render={() => <TodoList />}></Route>
             </Switch>
         </S.AppContainer>
     );

@@ -123,9 +123,10 @@ S.Logout = styled.h3`
     position: absolute;
     top: 25px;
     right: 25px;
+    color: white;
     cursor: pointer;
     &:hover {
-        color: white;
+        border-bottom: 2px solid white;
     }
 `
 

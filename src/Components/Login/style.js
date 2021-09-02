@@ -54,7 +54,7 @@ S.Submit = styled.button`
     padding: 15px;
     border: none;
     border-radius: 25px;
-    margin: 25px 0 50px;
+    margin: 25px 0 10px;
     cursor: pointer;
 `
 
@@ -62,6 +62,10 @@ S.Error = styled.p`
     color: red;
     font-size: 10px;
     min-height: 12px;
+    &.formError {
+        text-align:center;
+        margin-bottom: 40px;
+    }
 `
 
 export default S

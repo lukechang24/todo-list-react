@@ -96,14 +96,14 @@ const TodoList = (props) => {
                 <S.NewButton onClick={() => setShowForm(true)}>New</S.NewButton>
             </S.Container1>
             <S.TodoForm className={showForm ? "show" : ""}>
-                <S.TodoInput id="input" value={input} placeholder="item name" onChange={(e) => handleInput(e)}></S.TodoInput>
+                <S.TodoInput id="input" value={input} placeholder="item name" maxLength="25" onChange={(e) => handleInput(e)}></S.TodoInput>
                 <S.Container2>
                     <S.Cancel className="fas fa-times" onClick={() => {setShowForm(false)}}></S.Cancel>  
                     <S.SaveButton onClick={() => addTodo()}>Add</S.SaveButton>
                 </S.Container2>
             </S.TodoForm>
             {todoList.reverse()}
-            <S.Logout onClick={() => props.history.push("/")}>Log out</S.Logout>
+            <S.Logout onClick={() => props.history.push("/login")}>Log out</S.Logout>
         </S.TodoList>
     )
 }

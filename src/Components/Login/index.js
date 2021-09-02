@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event"
 import React, { useState, useEffect } from "react"
 import { withRouter } from "react-router-dom"
 
@@ -19,19 +20,14 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(inputs)
-        // };
-        // const response = await fetch("http://dev.rapptrlabs.com/Tests/scripts/user-login.php", requestOptions)
-        // const data = await response.json()
-        // console.log(data)
-        if(inputs.email === "test@rapptrlabs.com" && inputs.password === "Test123") {
-            props.history.push("/todos")
+        const requestOptions = {
+            method: 'POST',
+            body: new URLSearchParams(`email=${inputs.email}&password=${inputs.password}`)
+        };
+        const response = await fetch("http://dev.rapptrlabs.com/Tests/scripts/user-login.php", requestOptions)
+        const data = await response.json()
+        if(data.user_id) {
+            props.history.push("/list")
         } else {
             handleErrors()
         }
@@ -45,8 +41,10 @@ const Login = (props) => {
         }
         if(!inputs.email) {
             setEmailError("Please fill the required fields")
-        } else if(inputs.email.indexOf("@") === -1 || inputs.email.indexOf(" ") === -1) {
+        } else if(inputs.email.indexOf("@") === -1 || inputs.email.indexOf(" ") >=  0) {
             setEmailError("Not a valid email")
+        } else {
+            setFormError("Email or password is incorrect")
         }
     }
 
@@ -66,6 +64,7 @@ const Login = (props) => {
             </S.InputContainer>
             <S.Error>{passwordError}</S.Error>
             <S.Submit>Login</S.Submit>
+            <S.Error className="formError">{formError}</S.Error>
         </S.LoginForm>
     )
 }
